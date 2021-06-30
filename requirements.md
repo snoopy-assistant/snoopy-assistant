@@ -1,3 +1,5 @@
+## User Stories
+
 #### Feature One: [Greeting]
 
 - **as a user, I want to ask Snoopy for his name, so he can respond to me with his name**
