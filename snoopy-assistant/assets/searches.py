@@ -1,30 +1,8 @@
-# import speech_recognition as sr
-#
-import webbrowser
+
 from urllib import request
 import json
-# import pyttsx3
-
-# if 'open youtube' in statement:
-# webbrowser.open_new_tab("https://www.youtube.com")
-# speak("youtube is open now")
-# time.sleep(5)
-#
-# elif 'open google' in statement:
-# webbrowser.open_new_tab("https://www.google.com")
-# speak("Google chrome is open now")
-# time.sleep(5)
-#
-# elif 'open gmail' in statement:
-# webbrowser.open_new_tab("gmail.com")
-# speak("Google Mail open now")
-# time.sleep(5)
-#
-#
-# elif 'open facebook' in statement:
-# webbrowser.open_new_tab("facebook.com")
-# speak("face book is open now")
-# time.sleep(5)
+import pyttsx3
+pyttsx3.speak('obada is great')
 
 #-----------------------------------------------------jokes
 url = 'http://official-joke-api.appspot.com/random_ten'
@@ -52,10 +30,10 @@ print(f'Got {len(jokes)} jokes')
 
 for joke in jokes:
     print(joke)
-    # pyttsx3.speak('joke setup')
-    # pyttsx3.speak(joke.setup)
-    # pyttsx3.speak('joke punchline')
-    # pyttsx3.speak(joke.punchline)
+
+    pyttsx3.speak(joke.setup)
+    pyttsx3.speak('joke punchline')
+    pyttsx3.speak(joke.punchline)
 
 
 
