@@ -1,40 +1,25 @@
 import datetime
+import webbrowser
+
 import speech_recognition as sr
 from urllib import request
 import json
 import pyttsx3
+import wikipedia
+import time
+
+
 
 
 #-----------------------------------------------------jokes
-# url = 'http://official-joke-api.appspot.com/random_ten'
-# r = request.urlopen(url)
-# print(r.getcode())
-# data = r.read()
-# jsonData = json.loads(data)
-# # print(jsonData)
-# class Joke:
-#     def __init__(self,setup,punchline):
-#         self.setup = setup
-#         self.punchline = punchline
-#
-#     def __str__(self):
-#         return f'setup {self.setup} punchline {self.punchline}'
-#
-# jokes=[]
-# for j in jsonData:
-#     setup = j['setup']
-#     punchline = j['punchline']
-#     joke = Joke(setup, punchline)
-#     jokes.append(joke)
-#
-# print(f'Got {len(jokes)} jokes')
-#
-# for joke in jokes:
-#     print(joke)
-#
-#     pyttsx3.speak(joke.setup)
-#     pyttsx3.speak('joke punchline')
-#     pyttsx3.speak(joke.punchline)
+
+url = 'http://official-joke-api.appspot.com/jokes/random'
+r = request.urlopen(url)
+print(r.getcode())
+data = r.read()
+jsonData = json.loads(data)
+print(jsonData)
+
 #___________________________________________________________________________________
 engine = pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
@@ -88,10 +73,55 @@ if __name__=='__main__':
         if statement==0:
             continue
 
-        if "joke" in statement or "ok bye" in statement or "stop" in statement:
-            speak('python is easy')
-            print('python is easy')
+
+        if 'joke' in statement:
+            speak(jsonData['setup'] + jsonData['punchline'])
+
+
+        if 'goodbye' in statement or 'bye' in statement or 'stop' in statement:
+            speak('Ok man relax I am a good dog')
             break
+
+        if 'wikipedia' in statement:
+            speak('Searching Wikipedia...')
+            statement = statement.replace('wikipedia','')
+            results = wikipedia.summary(statement, sentences=3)
+            speak('According to Wikipedia')
+            print(results)
+            speak(results)
+
+        elif 'open youtube' in statement:
+            webbrowser.open_new_tab('https://www.youtube.com')
+            speak('youtube is open now')
+
+        elif 'open google' in statement:
+            webbrowser.open_new_tab("https://www.google.com")
+            speak("Google chrome is open now")
+            time.sleep(5)
+
+        elif 'open gmail' in statement:
+            webbrowser.open_new_tab("gmail.com")
+            speak("Google Mail open now")
+            time.sleep(5)
+
+        elif 'open facebook' in statement:
+            webbrowser.open_new_tab("facebook.com")
+            speak("facebook is open now")
+            time.sleep(5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
