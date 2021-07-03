@@ -3,11 +3,12 @@ from gtts import gTTS
 from playsound import playsound
 import os
 import time
+import times
 import speech_recognition as sr
 import webbrowser
 from time import ctime
 import datetime
-
+from pygame import mixer
 r = sr.Recognizer()
 
 
@@ -16,20 +17,20 @@ def record_audio(ask=False):
         if ask:
             speaky(ask)
 
-        audio = r.listen(source)  # listen for the audio via source
+        audio = r.listen(source, timeout=5)  # listen for the audio via source
         voice_data = ''
         try:
             voice_data = r.recognize_google(audio)
 
         except sr.UnknownValueError:
-            speaky('Sorry,I did not get that')
+            speaky('Sorry,I did not get that repeat it ')
         except sr.RequestError:
             speaky('Sorry, the service is down')
         return voice_data
 
 
 def speaky(string):
-    tts = gTTS(text=string, lang='en')
+    tts = gTTS(text=string, lang='en', slow=False)
     r = random.randint(1, 9000)
     audio_file = 'audio-' + str(r) + '.mp3'
     tts.save(audio_file)
@@ -62,26 +63,49 @@ def respond(voice_data):
     if 'time' in voice_data:
         time = datetime.datetime.now().strftime("%H:%M:%S")
         speaky(f"the time is {time}")
-        
-    elif 'who are you' in voice_data or 'what can you do' in voice_data:
-        speaky('I am snoopy version 1 point O your personal assistant. I am programmed to minor tasks like'
-              'opening youtube,google chrome, gmail ,predict time,take a photo,search wikipedia,predict weather'
-              'In different cities,!')
+
+    elif 'who are you' in voice_data or 'what can you do' in voice_data or 'introduce yourself ' in voice_data:
+        speaky('hello ,I am snoopy version 1 point O your personal assistant. I am programmed to minor tasks like'
+               'opening youtube,google chrome, gmail ,predict time,take a photo,search wikipedia,predict weather'
+               'In different cities,!')
 
     elif "who made you" in voice_data or "who created you" in voice_data or "who discovered you" in voice_data:
         speaky("I was built by speaky team ")
 
+    elif 'news' in voice_data:
+        news = webbrowser.open_new_tab("https://www.jordantimes.com/")
+        speaky('Here are some headlines from the jordan Times,Happy reading')
 
+    elif 'play music' in voice_data or 'change music' in voice_data:
+        speaky('Here are your favorites enjoy it')
+        music_dir = "D:\music"
+        songs = os.listdir(music_dir)
+        n = random.randint(0, 2)
+        playmusic(music_dir + "\\" + songs[0])
+    elif 'stop music' in voice_data:
+        speaky("Stopping playback.")
+        stopmusic()
+
+
+def playmusic(song):
+    mixer.init()
+    mixer.music.load(song)
+    mixer.music.play()
+
+
+def stopmusic():
+    mixer.music.stop()
 
 name = 'niveen'
+
 time.sleep(1)
 if hour >= 0 and hour <= 12:
-    speaky("Good Morning Name!" + name)
+    speaky("Good Morning !" + name)
 elif hour >= 12 and hour <= 18:
     speaky("Good Afternoon " + name)
 else:
-    speaky("Good Evening Name!" + name)
-speaky("Hey, im snoopy! and im here to serve you ")
+    speaky("Good Evening !" + name)
+speaky("im snoopy! and im here to serve you ")
 
 while 1:
     voice_data = record_audio()
