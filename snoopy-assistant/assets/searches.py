@@ -22,7 +22,9 @@ print(jsonData)
 #___________________________________________________________________________________
 engine = pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
-engine.setProperty('voice','voices[0].id')
+rate = engine.getProperty('rate')
+engine.setProperty('voice',voices[0].id)
+engine.setProperty('rate', rate-20)
 def speak(text):
     engine.say(text)
     engine.runAndWait()
@@ -52,8 +54,8 @@ def takeCommand():
             speak('Pardon me, please say that again')
             return 'None'
         return statement
-print('Loading your AI personal assistant G-One')
-speak("Loading your AI personal assistant G-One")
+print('Loading your dog personal assistant snoopy')
+speak("Loading your dog personal assistant snoopy")
 wishMe()
 
 
@@ -108,6 +110,12 @@ if __name__=='__main__':
             speak("facebook is open now")
             time.sleep(5)
 
+
+        elif 'open discord' in statement:
+            webbrowser.open_new_tab("https://discord.com/")
+            speak("discord is open now")
+            time.sleep(5)
+
         elif 'news' in  statement:
             news = webbrowser.open_new_tab('https://timesofindia.indiatimes.com/home/headlines')
             speak('Here are some headlines from the Times of India,Happy reading')
@@ -115,7 +123,7 @@ if __name__=='__main__':
 
         elif 'search' in statement:
             statement = statement.replace('search','')
-            webbrowser.open_new_tab(statement)
+            webbrowser.open_new_tab(f'https://www.google.jo/search?q={statement}&sxsrf=ALeKk03Qm_B-cTbf7gsRTNFipWrVsqZk5A%3A1625323098676&source=hp&ei=WnbgYLvyJqCPhbIP5Z-woAg&iflsig=AINFCbYAAAAAYOCEanVOpdEeam8Lq3lP_kODEmW2Uw5V&oq=&gs_lcp=Cgdnd3Mtd2l6EAEYADIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJ1AAWABg3SVoAXAAeACAAQCIAQCSAQCYAQCqAQdnd3Mtd2l6sAEK&sclient=gws-wiz')
             time.sleep(5)
 
 
