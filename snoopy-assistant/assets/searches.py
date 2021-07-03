@@ -15,7 +15,6 @@ import time
 
 url = 'http://official-joke-api.appspot.com/jokes/random'
 r = request.urlopen(url)
-print(r.getcode())
 data = r.read()
 jsonData = json.loads(data)
 print(jsonData)
@@ -107,6 +106,16 @@ if __name__=='__main__':
         elif 'open facebook' in statement:
             webbrowser.open_new_tab("facebook.com")
             speak("facebook is open now")
+            time.sleep(5)
+
+        elif 'news' in  statement:
+            news = webbrowser.open_new_tab('https://timesofindia.indiatimes.com/home/headlines')
+            speak('Here are some headlines from the Times of India,Happy reading')
+            time.sleep(6)
+
+        elif 'search' in statement:
+            statement = statement.replace('search','')
+            webbrowser.open_new_tab(statement)
             time.sleep(5)
 
 
