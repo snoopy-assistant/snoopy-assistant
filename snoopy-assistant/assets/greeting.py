@@ -9,7 +9,28 @@ import webbrowser
 from time import ctime
 import datetime
 from pygame import mixer
+
 r = sr.Recognizer()
+
+
+class person:
+    name = ''
+
+    def setName(self, name):
+        self.name = name
+
+
+class asis:
+    name = ''
+
+    def setName(self, name):
+        self.name = name
+
+
+person_obj = person()
+asis_obj = asis()
+asis_obj.name = 'snoopy'
+person_obj.name = ""
 
 
 def record_audio(ask=False):
@@ -42,10 +63,36 @@ def speaky(string):
 hour = int(datetime.datetime.now().hour)
 
 
+################################################################################
+########################### Name ####################################
+
+
+def Name(voice_data):
+    if "what is your name" in voice_data or "what's your name" in voice_data or "tell me your name" in voice_data:
+
+        if person_obj.name:
+            speaky(f"My name is {asis_obj.name}, {person_obj.name}")
+        else:
+            speaky(f"My name is {asis_obj.name}. what's your name?")
+
+    if "my name is" in voice_data:
+        person_name = voice_data.split("is")[-1].strip()
+        speaky("okay, i will remember that " + person_name)
+        speaky('how your day going?'+person_name)
+        person_obj.setName(person_name)
+
+
 def respond(voice_data):
-    if 'good' in voice_data or 'nice' in voice_data or 'perfect' in voice_data :
+    if 'hey' in voice_data or 'hi ' in voice_data or 'hello 'in voice_data:
+        greetings = ["hey, how can I help you" + person_obj.name, "hey, what's up?" + person_obj.name,
+                     "I'm listening" + person_obj.name, "how can I help you?" + person_obj.name,
+                     "hello" + person_obj.name]
+        greet = greetings[random.randint(0, len(greetings) - 1)]
+        speaky(greet)
+
+    if 'good' in voice_data or 'nice' in voice_data or 'perfect' in voice_data:
         speaky('hopefully forever ')
-    if 'not' in voice_data or 'mad' in voice_data :
+    if 'not' in voice_data or 'mad' in voice_data:
         speaky(' Do not worry , snoopy will make it right ')
     if 'thank you' in voice_data:
         speaky('any time sir ')
@@ -60,7 +107,8 @@ def respond(voice_data):
         url = 'https://google.com/maps/place/' + location + '/&amp;'
         webbrowser.get().open(url)
         speaky('Here is the location of ' + location)
-    if "good bye" in voice_data or "ok bye" in voice_data or "stop" in voice_data or "exit" in voice_data:
+
+    if "bye" in voice_data or "ok bye" in voice_data or "stop" in voice_data or "exit" in voice_data:
         speaky('your personal assistant snoopy  is shutting down,Good bye sir')
         exit()
 
@@ -100,18 +148,25 @@ def playmusic(song):
 def stopmusic():
     mixer.music.stop()
 
-name = 'niveen'
 
 time.sleep(1)
 if hour >= 0 and hour <= 12:
-    speaky("Good Morning !" + name)
+    speaky(f"Good Morning ! {person_obj.name}")
 elif hour >= 12 and hour <= 18:
-    speaky("Good Afternoon " + name)
+    speaky("Good Afternoon " + {person_obj.name})
 else:
-    speaky("Good Evening !" + name)
-speaky("im snoopy! and im here to serve you , how your day going? ")
+    speaky("Good Evening !" + {person_obj.name})
+speaky("your assistant is ready to go , im here to serve you ")
 
 while 1:
     voice_data = record_audio()
     respond(voice_data)
+    Name(voice_data)
+
+
+
+
+
+
+
 
