@@ -1,4 +1,5 @@
 import datetime
+import tkinter
 import webbrowser
 
 import speech_recognition as sr
@@ -7,6 +8,9 @@ import json
 import pyttsx3
 import wikipedia
 import time
+
+
+
 
 
 
@@ -65,7 +69,7 @@ wishMe()
 
 
 
-if __name__=='__main__':
+def talk():
 
 
     while True:
@@ -125,6 +129,60 @@ if __name__=='__main__':
             statement = statement.replace('search','')
             webbrowser.open_new_tab(f'https://www.google.jo/search?q={statement}&sxsrf=ALeKk03Qm_B-cTbf7gsRTNFipWrVsqZk5A%3A1625323098676&source=hp&ei=WnbgYLvyJqCPhbIP5Z-woAg&iflsig=AINFCbYAAAAAYOCEanVOpdEeam8Lq3lP_kODEmW2Uw5V&oq=&gs_lcp=Cgdnd3Mtd2l6EAEYADIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJ1AAWABg3SVoAXAAeACAAQCIAQCSAQCYAQCqAQdnd3Mtd2l6sAEK&sclient=gws-wiz')
             time.sleep(5)
+
+
+#------------------------------------------------------gui
+from tkinter import *
+from PIL import  ImageTk, Image
+root = Tk()
+root.title('snoopy')
+root.geometry('800x500')
+root.iconbitmap('c:/snoopy.ico')
+
+#define image
+bg = ImageTk.PhotoImage(file='c:/snoopy2.jpg')
+
+#create a canvas:
+my_canvas = Canvas(root, width=800,height=500)
+my_canvas.pack(fill='both', expand=True)
+my_canvas.create_image(0,0, image=bg , anchor='nw')
+
+
+# buttons
+my_canvas.create_text(400, 250, text = 'welcome', font=('Helvetica',50),fill='white')
+button1 = Button(root, text='Start')
+button2 = Button(root, text='Stop')
+button1_window = my_canvas.create_window(10,10,anchor='nw', window=button1)
+button2_window = my_canvas.create_window(50,10,anchor='nw', window=button2)
+
+def resizer(e):
+    global  bg1, resized_bg, new_bg
+    bg1 = Image.open('c:/snoopy2.jpg')
+    resized_bg = bg1.resize((e.width,e.height), Image.ANTIALIAS)
+    new_bg = ImageTk.PhotoImage(resized_bg)
+    my_canvas.create_image(0,0, image=new_bg , anchor='nw')
+    my_canvas.create_text(400, 250, text='welcome To Snoopy', font=('Helvetica', 50), fill='white')
+
+    # open the image
+
+
+
+# my_entry = Entry(root, font=('Helvetica',28))
+# my_button= Button(root, text= 'speak' , command=talk)
+# # my_button2= Button(root, text= 'stop' , command=)
+# my_button.pack(pady=20)
+# # my_button2.pack(pady=20)
+
+root.bind('<Configure>', resizer)
+
+
+root.mainloop()
+
+
+
+
+
+
 
 
 
