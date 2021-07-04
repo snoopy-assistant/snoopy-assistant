@@ -137,8 +137,8 @@ def respond(voice_data):
         music_dir = "D:\music"
         songs = os.listdir(music_dir)
         n = random.randint(0, 2)
-        playmusic(music_dir + "\\" + songs[0])
-    elif 'stop music' in voice_data:
+        playmusic(music_dir + "\\" + songs[n])
+    elif 'enough' in voice_data:
         speaky("Stopping playback.")
         stopmusic()
 
