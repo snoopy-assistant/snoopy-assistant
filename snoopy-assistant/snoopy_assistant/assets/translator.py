@@ -56,7 +56,7 @@ def translator(to_lan):
 
 
 def speak_lan(sentence):
-    speaker_lan = {  # chose voice speaker: https://cloud.ibm.com/docs/text-to-speech?topic=text-to-speech-voices
+    speaker_lan = { 
         'Arabic': ['ar-MS_OmarVoice'],
         'Brazilian': ['pt-BR_IsabelaV3Voice'],
         'Chinese': ['zh-CN_LiNaVoice', 'zh-CN_WangWeiVoice', 'zh-CN_ZhangJingVoice'],

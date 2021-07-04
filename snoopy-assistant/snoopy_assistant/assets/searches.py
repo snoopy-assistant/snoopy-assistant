@@ -1,17 +1,16 @@
-import datetime
+from greeting import speaky ,record_audio
 import webbrowser
-
 import speech_recognition as sr
 from urllib import request
 import json
 import pyttsx3
 import wikipedia
-import time
 
 
 
 
-#-----------------------------------------------------jokes
+
+#-----------------------------------------------------jokes----------------------------------------------------
 
 url = 'http://official-joke-api.appspot.com/jokes/random'
 r = request.urlopen(url)
@@ -20,112 +19,53 @@ jsonData = json.loads(data)
 print(jsonData)
 
 #___________________________________________________________________________________
-engine = pyttsx3.init('sapi5')
-voices=engine.getProperty('voices')
-rate = engine.getProperty('rate')
-engine.setProperty('voice',voices[0].id)
-engine.setProperty('rate', rate-20)
-def speak(text):
-    engine.say(text)
-    engine.runAndWait()
 
-def wishMe():
-    hour=datetime.datetime.now().hour
-    if hour>=0 and hour<12:
-        speak("Hello,Good Morning")
-        print("Hello,Good Morning")
-    elif hour>=12 and hour<18:
-        speak("Hello,Good Afternoon")
-        print("Hello,Good Afternoon")
-    else:
-        speak("Hello,Good Evening")
-        print("Hello,Good Evening")
-
-def takeCommand():
-    r=sr.Recognizer()
-    with sr.Microphone() as source:
-        print('listening...')
-        audio = r.listen(source)
-
-        try:
-            statement=r.recognize_google(audio,language='en-in')
-            print(f'user said:{statement}\n')
-        except Exception as e:
-            speak('Pardon me, please say that again')
-            return 'None'
-        return statement
-print('Loading your dog personal assistant snoopy')
-speak("Loading your dog personal assistant snoopy")
-wishMe()
+def searching (voice_data):
+        if 'joke' in voice_data:
+            speaky(jsonData['setup'] + jsonData['punchline'])
 
 
-
-
-
-
-
-
-if __name__=='__main__':
-
-
-    while True:
-        speak("Tell me how can I help you now?")
-        statement = takeCommand().lower()
-        if statement==0:
-            continue
-
-
-        if 'joke' in statement:
-            speak(jsonData['setup'] + jsonData['punchline'])
-
-
-        if 'goodbye' in statement or 'bye' in statement or 'stop' in statement:
-            speak('Ok man relax I am a good dog')
-            break
-
-        if 'wikipedia' in statement:
-            speak('Searching Wikipedia...')
-            statement = statement.replace('wikipedia','')
+        if 'wikipedia' in voice_data:
+            speaky('Searching Wikipedia...')
+            statement = voice_data.replace('wikipedia','')
             results = wikipedia.summary(statement, sentences=3)
-            speak('According to Wikipedia')
-            print(results)
-            speak(results)
+            speaky('According to Wikipedia')
+            speaky(results)
 
-        elif 'open youtube' in statement:
+        elif 'open youtube' in voice_data:
             webbrowser.open_new_tab('https://www.youtube.com')
-            speak('youtube is open now')
+            speaky('youtube is open now')
 
-        elif 'open google' in statement:
+        elif 'open google' in voice_data:
             webbrowser.open_new_tab("https://www.google.com")
-            speak("Google chrome is open now")
-            time.sleep(5)
+            speaky("Google chrome is open now")
+           
 
-        elif 'open gmail' in statement:
+        elif 'open gmail' in voice_data:
             webbrowser.open_new_tab("gmail.com")
-            speak("Google Mail open now")
-            time.sleep(5)
+            speaky("Google Mail open now")
+            
 
-        elif 'open facebook' in statement:
+        elif 'open facebook' in voice_data:
             webbrowser.open_new_tab("facebook.com")
-            speak("facebook is open now")
-            time.sleep(5)
+            speaky("facebook is open now")
+           
 
 
-        elif 'open discord' in statement:
+        elif 'open discord' in voice_data:
             webbrowser.open_new_tab("https://discord.com/")
-            speak("discord is open now")
-            time.sleep(5)
+            speaky("discord is open now")
+            
 
-        elif 'news' in  statement:
-            news = webbrowser.open_new_tab('https://timesofindia.indiatimes.com/home/headlines')
-            speak('Here are some headlines from the Times of India,Happy reading')
-            time.sleep(6)
-
-        elif 'search' in statement:
-            statement = statement.replace('search','')
-            webbrowser.open_new_tab(f'https://www.google.jo/search?q={statement}&sxsrf=ALeKk03Qm_B-cTbf7gsRTNFipWrVsqZk5A%3A1625323098676&source=hp&ei=WnbgYLvyJqCPhbIP5Z-woAg&iflsig=AINFCbYAAAAAYOCEanVOpdEeam8Lq3lP_kODEmW2Uw5V&oq=&gs_lcp=Cgdnd3Mtd2l6EAEYADIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJzIHCCMQ6gIQJ1AAWABg3SVoAXAAeACAAQCIAQCSAQCYAQCqAQdnd3Mtd2l6sAEK&sclient=gws-wiz')
-            time.sleep(5)
-
+        elif 'news' in voice_data or "tell me news" in voice_data or "last news" in voice_data:
+            news = webbrowser.open_new_tab("https://www.jordantimes.com/")
+            speaky('Here are some headlines from the jordan Times,Happy reading')
+        
+        if 'search' in voice_data:
+            search = record_audio('what do you want search for')
+            url = 'https://google.com/search?q=' + search
+            webbrowser.get().open(url)
+            speaky('Here is what I found for ' + search)
 
 
 
