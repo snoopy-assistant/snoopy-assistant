@@ -7,12 +7,12 @@ import datetime
 def weatherTime(voice_data):
   
 
-       if 'time' in voice_data:
+     if 'time' in voice_data:
             current_time = datetime.datetime.now().strftime("%H:%M:%S")
             speaky(f"the time is {current_time}")
 
 
-       if 'today' in voice_data or 'day' in voice_data :
+     if 'today' in voice_data or 'day' in voice_data :
 
             the_day = datetime.datetime.today().weekday() + 1
 
@@ -25,10 +25,12 @@ def weatherTime(voice_data):
 
                 speaky(f"today is {day_of_today}")
 
+     elif "date" in  voice_data :
+            date= datetime.date.today()
+            speaky(f"the date is {date}")
 
 
-
-       if "weather" in voice_data:
+     if "weather" in voice_data:
             city_name = record_audio("what is the city name")
             api_key = "0b3f253b870f4c61b104c97b388d28b6"
             base_url = f"https://api.weatherbit.io/v2.0/forecast/daily?city={city_name}&key={api_key}"
