@@ -1,3 +1,4 @@
+
 [tool.poetry]
 name = "snoopy-assistant"
 version = "0.1.0"
@@ -21,3 +22,36 @@ pytest = "^5.2"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "snoopy-assistant"
+version = "0.1.0"
+description = ""
+authors = ["Ayman Naif <ayman_naif@hotmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+SpeechRecognition = "^3.8.1"
+DateTime = "^4.3"
+audiomath = "^1.15.4"
+newsapi-python = "^0.2.6"
+wikipedia = "^1.4.0"
+youtube_dl = "^2021.6.6"
+secure-smtplib = "^0.1.1"
+pypi = "^2.1"
+
+googletrans = "^3.0.0"
+
+playsound = "^1.2.2"
+gTTS = "^2.2.3"
+pygame = "^2.0.1"
+times = "^0.7"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
