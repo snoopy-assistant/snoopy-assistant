@@ -14,7 +14,14 @@ wikipedia = "^1.4.0"
 youtube_dl = "^2021.6.6"
 secure-smtplib = "^0.1.1"
 pypi = "^2.1"
+
 googletrans = "^3.0.0"
+
+playsound = "^1.2.2"
+gTTS = "^2.2.3"
+pygame = "^2.0.1"
+times = "^0.7"
+
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
