@@ -254,6 +254,11 @@ def respond(voice_data):
         speaky("okay, i will remember that " + person_name)
         speaky('how your day going?' + person_name)
         person_obj.setName(person_name)
+    
+def stop (voic_data):
+     if "bye" in voice_data or "ok bye" in voice_data or "stop" in voice_data or "exit" in voice_data:
+        speaky('your personal assistant snoopy  is shutting down,Good bye sir')
+        exit()
 
 
 def playmusic(song):
@@ -278,3 +283,11 @@ speaky("your assistant is ready to go , im here to serve you ")
 while 1:
     voice_data = record_audio()
     respond(voice_data)
+    stop(voice_data)
+
+
+
+
+
+
+#################################################### GUI##############################################################
