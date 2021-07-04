@@ -79,7 +79,7 @@ def speak_lan(sentence):
     tts = TextToSpeechV1(authenticator=ttsauthenticator)
     tts.set_service_url(ttsurl)
     text = sentence
-    with open('./help.mp3', 'wb') as audio_file:
+    with open('help.mp3', 'wb') as audio_file:
 
         res = tts.synthesize(text, accept='audio/mp3', voice=speaker_lan['German'][0]).get_result()
         audio_file.write(res.content)
