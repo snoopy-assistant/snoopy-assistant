@@ -16,6 +16,8 @@ SpeechRecognition = "^3.8.1"
 youtube_dl = "^2021.6.6"
 wikipedia = "^1.4.0"
 requests = "^2.25.1"
+twilio = "^6.61.0"
+googletrans = "^3.0.0"
 
 
 [tool.poetry.dev-dependencies]
