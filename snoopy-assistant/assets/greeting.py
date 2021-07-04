@@ -108,6 +108,10 @@ def respond(voice_data):
         webbrowser.get().open(url)
         speaky('Here is the location of ' + location)
 
+    if "what is my exact location" in voice_data:
+        url = "https://www.google.com/maps/search/Where+am+I+?/"
+        webbrowser.get().open(url)
+        speaky("You must be somewhere near here, as per Google maps")   
     if "bye" in voice_data or "ok bye" in voice_data or "stop" in voice_data or "exit" in voice_data:
         speaky('your personal assistant snoopy  is shutting down,Good bye sir')
         exit()
