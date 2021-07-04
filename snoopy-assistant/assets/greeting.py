@@ -43,6 +43,10 @@ hour = int(datetime.datetime.now().hour)
 
 
 def respond(voice_data):
+    if 'good' in voice_data or 'nice' in voice_data or 'perfect' in voice_data :
+        speaky('hopefully forever ')
+    if 'not' in voice_data or 'mad' in voice_data :
+        speaky(' Do not worry , snoopy will make it right ')
     if 'thank you' in voice_data:
         speaky('any time sir ')
     if 'search' in voice_data:
@@ -72,7 +76,7 @@ def respond(voice_data):
     elif "who made you" in voice_data or "who created you" in voice_data or "who discovered you" in voice_data:
         speaky("I was built by speaky team ")
 
-    elif 'news' in voice_data:
+    elif 'news' in voice_data or "tell me news" in voice_data or "last news" in voice_data:
         news = webbrowser.open_new_tab("https://www.jordantimes.com/")
         speaky('Here are some headlines from the jordan Times,Happy reading')
 
@@ -105,22 +109,9 @@ elif hour >= 12 and hour <= 18:
     speaky("Good Afternoon " + name)
 else:
     speaky("Good Evening !" + name)
-speaky("im snoopy! and im here to serve you ")
+speaky("im snoopy! and im here to serve you , how your day going? ")
 
 while 1:
     voice_data = record_audio()
     respond(voice_data)
 
-# def Name(string):
-#     tts = gTTS(text=string, lang='en')
-#     audio_file = 'name.mp3'
-#     tts.save(audio_file)
-#     playsound(audio_file)
-#     os.remove(audio_file)
-#
-#
-# def name():
-#     with sr.AudioFile(name.file) as source:
-#         audio_data = r.record(source)
-#         text = sr.recognize_google(audio_data)
-#         print(text)
