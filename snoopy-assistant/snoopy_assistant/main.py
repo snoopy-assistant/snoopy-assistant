@@ -254,9 +254,10 @@ def respond(voice_data):
         speaky("okay, i will remember that " + person_name)
         speaky('how your day going?' + person_name)
         person_obj.setName(person_name)
-    
-def stop (voic_data):
-     if "bye" in voice_data or "ok bye" in voice_data or "stop" in voice_data or "exit" in voice_data:
+
+
+def stop(voice_data):
+    if "bye" in voice_data or "ok bye" in voice_data or "stop" in voice_data or "exit" in voice_data:
         speaky('your personal assistant snoopy  is shutting down,Good bye sir')
         exit()
 
@@ -285,9 +286,4 @@ while 1:
     respond(voice_data)
     stop(voice_data)
 
-
-
-
-
-
-#################################################### GUI##############################################################
+####################################################GUI##############################################################
