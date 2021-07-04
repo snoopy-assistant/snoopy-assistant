@@ -111,7 +111,7 @@ def respond(voice_data):
 
     elif 'who are you' in voice_data or 'what can you do' in voice_data or 'introduce yourself ' in voice_data:
         speaky('hello ,I am snoopy version 1 point O your personal assistant. I am programmed to minor tasks like'
-               'opening youtube,google chrome, gmail ,predict time,take a photo,search wikipedia,predict weather'
+               'opening youtube,google chrome, gmail ,predict time,play music,find location,search wikipedia,predict weather'
                'In different cities,!')
 
     elif "who made you" in voice_data or "who created you" in voice_data or "who discovered you" in voice_data:
