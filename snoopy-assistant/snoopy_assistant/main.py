@@ -16,9 +16,12 @@ import smtplib
 from twilio.rest import Client
 import googletrans
 from googletrans import Translator
+import tkinter as tk
+from PIL import Image
 
 ###################################################### helper functions & classs  ##############################################################################
 
+root = tk.Tk()
 
 url = 'http://official-joke-api.appspot.com/jokes/random'
 r = request.urlopen(url)
@@ -118,6 +121,18 @@ def send_sms():
 
 
 def respond(voice_data):
+    if "what is your name" in voice_data or "what's your name" in voice_data or "tell me your name" in voice_data:
+
+        if person_obj.name:
+            speaky(f"My name is {asis_obj.name}, {person_obj.name}")
+        else:
+            speaky(f"My name is {asis_obj.name}. what's your name?")
+    if "my name is" in voice_data:
+        person_name = voice_data.split("is")[-1].strip()
+        speaky("okay, i will remember that " + person_name)
+        speaky('how your day going?' + person_name)
+        person_obj.setName(person_name)
+
     if 'hey' in voice_data or 'hi ' in voice_data or 'hello ' in voice_data:
         greetings = ["hey, how can I help you" + person_obj.name, "hey, what's up?" + person_obj.name,
                      "I'm listening" + person_obj.name, "how can I help you?" + person_obj.name,
@@ -194,44 +209,32 @@ def respond(voice_data):
         description = data["data"][0]["weather"]["description"]
         temperature = data["data"][0]["high_temp"]
         speaky(f"{description} in {city_name}  and the temperature is {temperature} \n")
-
     if 'joke' in voice_data:
         speaky(jsonData['setup'] + jsonData['punchline'])
-
     if 'wikipedia' in voice_data:
         speaky('Searching Wikipedia...')
         statement = voice_data.replace('wikipedia', '')
         results = wikipedia.summary(statement, sentences=3)
         speaky('According to Wikipedia')
         speaky(results)
-
     elif 'open youtube' in voice_data:
         webbrowser.open_new_tab('https://www.youtube.com')
         speaky('youtube is open now')
-
     elif 'open google' in voice_data:
         webbrowser.open_new_tab("https://www.google.com")
         speaky("Google chrome is open now")
-
-
     elif 'open gmail' in voice_data:
         webbrowser.open_new_tab("gmail.com")
         speaky("Google Mail open now")
-
-
     elif 'open facebook' in voice_data:
         webbrowser.open_new_tab("facebook.com")
         speaky("facebook is open now")
-
     elif 'open discord' in voice_data:
         webbrowser.open_new_tab("https://discord.com/")
         speaky("discord is open now")
-
-
     elif 'news' in voice_data or "tell me news" in voice_data or "last news" in voice_data:
         news = webbrowser.open_new_tab("https://www.jordantimes.com/")
         speaky('Here are some headlines from the jordan Times,Happy reading')
-
     if 'search' in voice_data:
         search = record_audio('what do you want search for')
         url = 'https://google.com/search?q=' + search
@@ -239,26 +242,14 @@ def respond(voice_data):
         speaky('Here is what I found for ' + search)
     if 'send mail' in voice_data or 'email' in voice_data:
         send_mail()
-
     if "sms" in voice_data or 'send massege' in voice_data:
         send_sms()
-    if "what is your name" in voice_data or "what's your name" in voice_data or "tell me your name" in voice_data:
-
-        if person_obj.name:
-            speaky(f"My name is {asis_obj.name}, {person_obj.name}")
-        else:
-            speaky(f"My name is {asis_obj.name}. what's your name?")
-
-    if "my name is" in voice_data:
-        person_name = voice_data.split("is")[-1].strip()
-        speaky("okay, i will remember that " + person_name)
-        speaky('how your day going?' + person_name)
-        person_obj.setName(person_name)
-
-
-def stop(voice_data):
     if "bye" in voice_data or "ok bye" in voice_data or "stop" in voice_data or "exit" in voice_data:
         speaky('your personal assistant snoopy  is shutting down,Good bye sir')
+        exit()
+
+def stop():
+        speaky('your personal assistant snoopy is shutting down,Good bye sir')
         exit()
 
 
@@ -273,17 +264,86 @@ def stopmusic():
 
 
 time.sleep(1)
+def Gui():
+
+    root.iconbitmap('D:/snoopy.ico')
+    root.geometry('500x700+200+10')
+
+    file = "snoopy.gif"
+    info = Image.open(file)
+    frames = info.n_frames
+
+    im = [tk.PhotoImage(file=file, format=f"gif -index {i}") for i in range(frames)]
+    count = 0
+    anim = None
+
+
+    def animation(count):
+        global anim
+        im2 = im[count]
+        gif_label.configure(image=im2)
+        count += 1
+        if count == frames:
+            count = 0
+        anim = root.after(50, lambda: animation(count))
+
+
+    gif_label = tk.Label(root, image="", bg="black")
+    gif_label.pack()
+
+    animation(5)
+
+
+    def update(ind):
+        ind += 1
+        label.configure(image=frame)
+        root.after(100, update, ind)
+
+
+    def open():
+        newWindow = tk.Toplevel(root)
+        newWindow.iconbitmap('D:/snoopy.ico')
+        newWindow.title("features")
+        newWindow.geometry("300x350")
+        label1 = tk.Listbox(newWindow, height=200, width=500, bg='black', fg="white", activestyle='dotbox',font = "Helvetica 16 bold italic")
+        label1.insert(1, "Snoopy present to you ")
+        label1.insert(2, "                        ")
+        label1.insert(3, "1- tell a joke ")
+        label1.insert(4, "2- send emails ")
+        label1.insert(5, "3- send SMS  ")
+        label1.insert(6, "4- find location ")
+        label1.insert(7, "5- open browser ")
+        label1.pack()
+        newWindow.mainloop()
+
+
+    root.title('SNOOPY ')
+
+    features = tk.Button(height=1, width=10, text="features", command=open, bg='#f24b4b', fg='#f2f2f2')
+    features.config(font=("Arial", 12))
+    features.place(x=50, y=575)
+
+    talk = tk.Button(height=1, width=10, text="Talk ", command=open, bg='#f24b4b', fg='#f2f2f2')
+    talk.config(font=("Arial", 12))
+    talk.place(x=200, y=575)
+
+    stop = tk.Button(height=1, width=10, text="Stop", command=open, bg='#f24b4b', fg='#f2f2f2')
+    stop.config(font=("Arial", 12))
+    stop.place(x=350, y=575)
+
+    label = tk.Label(height=200, width=300, bg="black").pack()
+    root.mainloop()
+
 if hour >= 0 and hour <= 12:
     speaky(f"Good Morning ! ")
 elif hour >= 12 and hour <= 18:
     speaky("Good Afternoon ")
 else:
     speaky("Good Evening !")
-speaky("your assistant is ready to go , im here to serve you ")
-
+# speaky("your assistant is ready to go , im here to serve you ")
+voice_data = record_audio()
+Gui()
 while 1:
     voice_data = record_audio()
-    respond(voice_data)
-    stop(voice_data)
 
 ####################################################GUI##############################################################
