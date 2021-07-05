@@ -1,4 +1,4 @@
-from greeting import speaky ,record_audio
+from greeting import speaky, record_audio
 import speech_recognition as sr
 import requests
 import datetime

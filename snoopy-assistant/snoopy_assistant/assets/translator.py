@@ -81,9 +81,9 @@ def speak_lan(sentence):
     text = sentence
     with open('help.mp3', 'wb') as audio_file:
 
-        res = tts.synthesize(text, accept='audio/mp3', voice=speaker_lan['German'][0]).get_result()
+        res = tts.synthesize(text, accept='audio/mp3', voice=speaker_lan['German'][1]).get_result()
         audio_file.write(res.content)
 
 
 if __name__ == '__main__':
-    pass
+    speak_lan(translator('de'))
