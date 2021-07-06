@@ -1,23 +1,20 @@
+import datetime
+import json
+import os
 import random
+import smtplib
+import time
+import tkinter as tk
+from urllib import request
+import webbrowser
+import requests
+import speech_recognition as sr
+import wikipedia
+from PIL import Image
 from gtts import gTTS
 from playsound import playsound
-import os
-import speech_recognition as sr
-import webbrowser
-import datetime
-import time
-import requests
-import webbrowser
-from urllib import request
-import json
-import wikipedia
 from pygame import mixer
-import smtplib
 from twilio.rest import Client
-import googletrans
-from googletrans import Translator
-import tkinter as tk
-from PIL import Image
 
 ###################################################### helper functions & classs  ##############################################################################
 
@@ -86,7 +83,9 @@ def record_audio(ask=False):
         voice_data = ''
         try:
             print('Recognizing... ')
+
             voice_data = r.recognize_google(audio)
+            print(voice_data)
 
         except sr.UnknownValueError:
             speaky('Sorry,I did not get that repeat it ')
@@ -293,8 +292,9 @@ def stopmusic():
 time.sleep(1)
 
 
+
 def start_point():
-    voice_data = record_audio()
+
 
     if hour >= 0 and hour <= 12:
         speaky(f"Good Morning ! ")
@@ -303,7 +303,9 @@ def start_point():
     else:
         speaky("Good Evening !")
     speaky("your assistant is ready to go , im here to serve you ")
-    respond(voice_data)
+    while 1:
+        voice_data = record_audio()
+        respond(voice_data)
 
 
 #################################################GUI###############################################################
@@ -350,7 +352,7 @@ stop.place(x=350, y=575)
 label = tk.Label(height=200, width=300, bg="black").pack()
 root.mainloop()
 
-while 1:
-    voice_data = record_audio()
+
+
 
 ####################################################GUI##############################################################
