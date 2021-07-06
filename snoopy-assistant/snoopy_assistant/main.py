@@ -21,6 +21,33 @@ from PIL import Image
 
 ###################################################### helper functions & classs  ##############################################################################
 
+root = tk.Tk()
+root.iconbitmap('voice.ico')
+root.geometry('500x700+200+10')
+
+file = "snoopy.gif"
+info = Image.open(file)
+frames = info.n_frames
+
+im = [tk.PhotoImage(file=file, format=f"gif -index {i}") for i in range(frames)]
+count = 0
+anim = None
+
+
+def animation(count):
+    global anim
+    im2 = im[count]
+    gif_label.configure(image=im2)
+    count += 1
+    if count == frames:
+        count = 0
+    anim = root.after(50, lambda: animation(count))
+
+
+gif_label = tk.Label(root, image="", bg="black")
+gif_label.pack()
+
+animation(5)
 
 
 url = 'http://official-joke-api.appspot.com/jokes/random'
@@ -81,7 +108,6 @@ def speaky(string):
 
 hour = int(datetime.datetime.now().hour)
 
-root = tk.Tk()
 def send_mail():
     smtp = smtplib.SMTP('smtp.gmail.com', 587)
 
@@ -279,36 +305,8 @@ def start_point():
     respond(voice_data)
 
 
-while 1:
-    voice_data = record_audio()
 #################################################GUI###############################################################
 
-root.iconbitmap('voice.ico')
-root.geometry('500x700+200+10')
-
-file = "snoopy.gif"
-info = Image.open(file)
-frames = info.n_frames
-
-im = [tk.PhotoImage(file=file, format=f"gif -index {i}") for i in range(frames)]
-count = 0
-anim = None
-
-
-def animation(count):
-    global anim
-    im2 = im[count]
-    gif_label.configure(image=im2)
-    count += 1
-    if count == frames:
-        count = 0
-    anim = root.after(50, lambda: animation(count))
-
-
-gif_label = tk.Label(root, image="", bg="black")
-gif_label.pack()
-
-animation(5)
 
 
 def update(ind):
@@ -351,5 +349,7 @@ stop.place(x=350, y=575)
 label = tk.Label(height=200, width=300, bg="black").pack()
 root.mainloop()
 
+while 1:
+    voice_data = record_audio()
 
 ####################################################GUI##############################################################
