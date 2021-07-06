@@ -2,7 +2,7 @@ from ibm_watson import LanguageTranslatorV3, TextToSpeechV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 import pyttsx3
 import speech_recognition as sr
-
+from playsound import playsound
 
 def take_command():
     r = sr.Recognizer()
@@ -10,7 +10,7 @@ def take_command():
         print('Listening ...')
         # r.pause_threshold = 1
         r.adjust_for_ambient_noise(source)
-        audio = r.listen(source, timeout=2)
+        audio = r.listen(source)
     try:
         print('Recognizing... ')
         query = r.recognize_google(audio, language='en')
@@ -35,7 +35,6 @@ def speak(sentence):
     engine.runAndWait()
     return sentence
 
-
 def translator(to_lan):
     apikey = 'CbQrcjaIiTgW3EEX9UXuV3bF80oY8SHx5wVfPwC2360c'
     url = 'https://api.eu-gb.language-translator.watson.cloud.ibm.com/instances/2b0ceff0-5a9e-4270-a6c6-4b5ef09ad228'
@@ -46,8 +45,7 @@ def translator(to_lan):
     text = take_command()
     lan = lt.identify(text).get_result()
     from_lan = lan['languages'][0]['language']
-    print(from_lan)
-    print(type(from_lan))
+
     print('translating...')
     translation = lt.translate(text=text, model_id=f'{from_lan}-{to_lan}').get_result()
     result = translation['translations'][0]['translation']
@@ -55,8 +53,8 @@ def translator(to_lan):
     return result
 
 
-def speak_lan(sentence):
-    speaker_lan = { 
+def speak_lan(sentence, lan ,speaker):
+    speaker_lan = {
         'Arabic': ['ar-MS_OmarVoice'],
         'Brazilian': ['pt-BR_IsabelaV3Voice'],
         'Chinese': ['zh-CN_LiNaVoice', 'zh-CN_WangWeiVoice', 'zh-CN_ZhangJingVoice'],
@@ -81,9 +79,52 @@ def speak_lan(sentence):
     text = sentence
     with open('help.mp3', 'wb') as audio_file:
 
-        res = tts.synthesize(text, accept='audio/mp3', voice=speaker_lan['German'][1]).get_result()
+        res = tts.synthesize(text, accept='audio/mp3', voice=speaker_lan[lan][speaker]).get_result()
         audio_file.write(res.content)
+    audio_file = 'help.mp3'
+    playsound(audio_file)
 
 
-if __name__ == '__main__':
-    speak_lan(translator('de'))
+def arab_translator_resp():
+    speak_lan(translator('ar'), 'Arabic', 0)
+
+
+def brazilian_translator_resp():
+    speak_lan(translator('pt'), 'Brazilian', 0)
+
+
+def chinese_translator_resp():
+    speak_lan(translator('zh'), 'Chinese', 0)
+
+
+def dutch_translator_resp():
+    speak_lan(translator('nl'), 'Dutch', 0)
+
+
+def english_translator_resp():
+    speak_lan(translator('en'), 'English', 0)
+
+
+def french_translator_resp():
+    speak_lan(translator('fr'), 'French', 0)
+
+
+def german_translator_resp():
+    speak_lan(translator('de'), 'German', 0)
+
+
+def italian_translator_resp():
+    speak_lan(translator('it'), 'Italian', 0)
+
+
+def japanese_translator_resp():
+    speak_lan(translator('ja'), 'Japanese', 0)
+
+
+def korean_translator_resp():
+    speak_lan(translator('ko'), 'Korean', 0)
+
+
+def spanish_translator_resp():
+    speak_lan(translator('es'), 'Spanish', 0)
+

@@ -15,8 +15,10 @@ from gtts import gTTS
 from playsound import playsound
 from pygame import mixer
 from twilio.rest import Client
+from assets.translator import take_command, translator, speak_lan, arab_translator_resp, brazilian_translator_resp, chinese_translator_resp, dutch_translator_resp, english_translator_resp, french_translator_resp, german_translator_resp, italian_translator_resp, japanese_translator_resp, korean_translator_resp, spanish_translator_resp
 
 ###################################################### helper functions & classs  ##############################################################################
+
 
 root = tk.Tk()
 root.iconbitmap('voice.ico')
@@ -142,6 +144,9 @@ def send_sms():
     speaky('message sent successfully')
 
 
+
+
+
 ################################################ All features ########################################################################
 
 
@@ -243,22 +248,23 @@ def respond(voice_data):
         speaky('According to Wikipedia')
         speaky(results)
     elif 'open youtube' in voice_data:
-        webbrowser.open_new_tab('https://www.youtube.com')
+        webbrowser.get().open('https://www.youtube.com')
         speaky('youtube is open now')
+        time.sleep(1)
     elif 'open google' in voice_data:
-        webbrowser.open_new_tab("https://www.google.com")
+        webbrowser.get().open("https://www.google.com")
         speaky("Google chrome is open now")
     elif 'open gmail' in voice_data:
-        webbrowser.open_new_tab("gmail.com")
+        webbrowser.get().open("https://mail.google.com/")
         speaky("Google Mail open now")
     elif 'open facebook' in voice_data:
-        webbrowser.open_new_tab("facebook.com")
+        webbrowser.get().open("https://facebook.com")
         speaky("facebook is open now")
     elif 'open discord' in voice_data:
-        webbrowser.open_new_tab("https://discord.com/")
+        webbrowser.get().open("https://discord.com/")
         speaky("discord is open now")
     elif 'news' in voice_data or "tell me news" in voice_data or "last news" in voice_data:
-        news = webbrowser.open_new_tab("https://www.jordantimes.com/")
+        news = webbrowser.get().open("https://www.jordantimes.com/")
         speaky('Here are some headlines from the jordan Times,Happy reading')
     if 'search' in voice_data:
         search = record_audio('what do you want search for')
@@ -334,20 +340,72 @@ def open():
     label1.pack()
     newWindow.mainloop()
 
+def translator_open():
+    newWindow = tk.Toplevel(root)
+    newWindow.iconbitmap('voice.ico')
+    newWindow.title("Translator")
+    newWindow.geometry("300x350")
+
+    arab_btn = tk.Button(newWindow, height=1, width=10, text="Arabic", command=arab_translator_resp, bg='#f24b4b', fg='#f2f2f2')
+    arab_btn.config(font=("Arial", 12))
+    arab_btn.place(x=30, y=20)
+
+    brazilian_btn = tk.Button(newWindow, height=1, width=10, text="Brazilian", command=brazilian_translator_resp, bg='#f24b4b', fg='#f2f2f2')
+    brazilian_btn.config(font=("Arial", 12))
+    brazilian_btn.place(x=150, y=20)
+
+    chinese_btn = tk.Button(newWindow, height=1, width=10, text="Chinese", command=chinese_translator_resp, bg='#f24b4b', fg='#f2f2f2')
+    chinese_btn.config(font=("Arial", 12))
+    chinese_btn.place(x=30, y=65)
+
+    dutch_btn = tk.Button(newWindow, height=1, width=10, text="Dutch", command=dutch_translator_resp, bg='#f24b4b', fg='#f2f2f2')
+    dutch_btn.config(font=("Arial", 12))
+    dutch_btn.place(x=150, y=65)
+
+    spanish_btn = tk.Button(newWindow, height=1, width=10, text="spanish", command=spanish_translator_resp, bg='#f24b4b', fg='#f2f2f2')
+    spanish_btn.config(font=("Arial", 12))
+    spanish_btn.place(x=30, y=110)
+
+    french_btn = tk.Button(newWindow, height=1, width=10, text="french", command=french_translator_resp, bg='#f24b4b', fg='#f2f2f2')
+    french_btn.config(font=("Arial", 12))
+    french_btn.place(x=150, y=110)
+
+    german_btn = tk.Button(newWindow, height=1, width=10, text="German", command=german_translator_resp, bg='#f24b4b', fg='#f2f2f2')
+    german_btn.config(font=("Arial", 12))
+    german_btn.place(x=30, y=155)
+
+    italian_btn = tk.Button(newWindow, height=1, width=10, text="italian", command=italian_translator_resp, bg='#f24b4b', fg='#f2f2f2')
+    italian_btn.config(font=("Arial", 12))
+    italian_btn.place(x=150, y=155)
+
+    japanese_btn = tk.Button(newWindow, height=1, width=10, text="japanese", command=japanese_translator_resp, bg='#f24b4b', fg='#f2f2f2')
+    japanese_btn.config(font=("Arial", 12))
+    japanese_btn.place(x=30, y=200)
+
+    korean_btn = tk.Button(newWindow, height=1, width=10, text="Korean", command=korean_translator_resp, bg='#f24b4b', fg='#f2f2f2')
+    korean_btn.config(font=("Arial", 12))
+    korean_btn.place(x=150, y=200)
+
+    newWindow.mainloop()
+
 
 root.title('SNOOPY ')
-# talk = respond(voice_data)
+
 features = tk.Button(height=1, width=10, text="features", command=open, bg='#f24b4b', fg='#f2f2f2')
 features.config(font=("Arial", 12))
-features.place(x=50, y=575)
+features.place(x=25, y=575)
 
 talk = tk.Button(height=1, width=10, text="Talk ", command=start_point, bg='#f24b4b', fg='#f2f2f2')
 talk.config(font=("Arial", 12))
-talk.place(x=200, y=575)
+talk.place(x=140, y=575)
 
 stop = tk.Button(height=1, width=10, text="Stop", command=stop, bg='#f24b4b', fg='#f2f2f2')
 stop.config(font=("Arial", 12))
-stop.place(x=350, y=575)
+stop.place(x=255, y=575)
+
+translate = tk.Button(height=1, width=10, text="translator ", command=translator_open, bg='#f24b4b', fg='#f2f2f2')
+translate.config(font=("Arial", 12))
+translate.place(x=375, y=575)
 
 label = tk.Label(height=200, width=300, bg="black").pack()
 root.mainloop()
