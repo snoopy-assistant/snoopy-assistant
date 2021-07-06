@@ -97,7 +97,7 @@ def record_audio(ask=False):
 
 
 def speaky(string):
-    tts = gTTS(text=string, lang='en', slow=False)
+    tts = gTTS(text=string, lang='ar', slow=False)
     r = random.randint(1, 9000)
     audio_file = 'audio-' + str(r) + '.mp3'
     tts.save(audio_file)
@@ -241,26 +241,26 @@ def respond(voice_data):
         speaky(f"{description} in {city_name}  and the temperature is {temperature} \n")
     if 'joke' in voice_data:
         speaky(jsonData['setup'] + jsonData['punchline'] + 'HAHAHAHAHA')
-    if 'wikipedia' in voice_data:
+    if 'Wikipedia' in voice_data:
         speaky('Searching Wikipedia...')
         statement = voice_data.replace('wikipedia', '')
         results = wikipedia.summary(statement, sentences=3)
         speaky('According to Wikipedia')
         speaky(results)
-    elif 'open youtube' in voice_data:
+    elif 'open YouTube' in voice_data:
         webbrowser.get().open('https://www.youtube.com')
         speaky('youtube is open now')
         time.sleep(1)
-    elif 'open google' in voice_data:
+    elif 'open Google' in voice_data:
         webbrowser.get().open("https://www.google.com")
         speaky("Google chrome is open now")
     elif 'open gmail' in voice_data:
         webbrowser.get().open("https://mail.google.com/")
         speaky("Google Mail open now")
-    elif 'open facebook' in voice_data:
+    elif 'open Facebook' in voice_data:
         webbrowser.get().open("https://facebook.com")
         speaky("facebook is open now")
-    elif 'open discord' in voice_data:
+    elif 'open Discord' in voice_data:
         webbrowser.get().open("https://discord.com/")
         speaky("discord is open now")
     elif 'news' in voice_data or "tell me news" in voice_data or "last news" in voice_data:
@@ -278,6 +278,12 @@ def respond(voice_data):
     if "bye" in voice_data or "ok bye" in voice_data or "stop" in voice_data or "exit" in voice_data:
         speaky('your personal assistant snoopy  is shutting down,Good bye sir')
         exit()
+    if 'language' in voice_data or 'speak' in voice_data:
+        speaky('سنوبي يتحدث اللغة العربية و ال engilsh also ')
+
+    if 'thanks' in voice_data or 'thank you' in voice_data or 'big' in voice_data:
+        speaky(
+            'thank you beautiful crowd big thanks to every one who joined our livestream thank you for your lovely feedback and your orders and special thanks to mister ahmad and the instructional team شكرا لكم جميعا ')
 
 
 def stop():
