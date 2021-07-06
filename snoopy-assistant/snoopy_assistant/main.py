@@ -49,7 +49,6 @@ gif_label.pack()
 
 animation(5)
 
-
 url = 'http://official-joke-api.appspot.com/jokes/random'
 r = request.urlopen(url)
 data = r.read()
@@ -107,6 +106,7 @@ def speaky(string):
 
 
 hour = int(datetime.datetime.now().hour)
+
 
 def send_mail():
     smtp = smtplib.SMTP('smtp.gmail.com', 587)
@@ -274,6 +274,7 @@ def respond(voice_data):
         speaky('your personal assistant snoopy  is shutting down,Good bye sir')
         exit()
 
+
 def stop():
     speaky('your personal assistant snoopy is shutting down,Good bye sir')
     exit()
@@ -308,7 +309,6 @@ def start_point():
 #################################################GUI###############################################################
 
 
-
 def update(ind):
     ind += 1
     label.configure(image=frame)
@@ -320,7 +320,8 @@ def open():
     newWindow.iconbitmap('voice.ico')
     newWindow.title("features")
     newWindow.geometry("300x350")
-    label1 = tk.Listbox(newWindow, height=200, width=500, bg='black', fg="white", activestyle='dotbox',font = "Helvetica 16 bold italic")
+    label1 = tk.Listbox(newWindow, height=200, width=500, bg='black', fg="white", activestyle='dotbox',
+                        font="Helvetica 16 bold italic")
     label1.insert(1, "Snoopy present to you ")
     label1.insert(2, "                        ")
     label1.insert(3, "1- tell a joke ")
