@@ -61,6 +61,7 @@ def takeCommand():
 print('Loading your dog personal assistant snoopy')
 speak("Loading your dog personal assistant snoopy")
 wishMe()
+#-------------------------------------------------------------------------------------------------------Thanks
 speak('THANK YOU BEAUTIFUL CROWD Big thanks to everyone who joined our Livestream Thank you for your Lovely Feedback and your orders and Special thanks to Mr.Ahmad and the instructional team')
 
 
