@@ -283,7 +283,7 @@ while 1:
     voice_data = record_audio()
 #################################################GUI###############################################################
 
-# root.iconbitmap('voice.ico')
+root.iconbitmap('voice.ico')
 root.geometry('500x700+200+10')
 
 file = "snoopy.gif"
@@ -319,7 +319,7 @@ def update(ind):
 
 def open():
     newWindow = tk.Toplevel(root)
-    # newWindow.iconbitmap('voice.ico')
+    newWindow.iconbitmap('voice.ico')
     newWindow.title("features")
     newWindow.geometry("300x350")
     label1 = tk.Listbox(newWindow, height=200, width=500, bg='black', fg="white", activestyle='dotbox',font = "Helvetica 16 bold italic")
