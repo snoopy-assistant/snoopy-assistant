@@ -127,4 +127,3 @@ def korean_translator_resp():
 
 def spanish_translator_resp():
     speak_lan(translator('es'), 'Spanish', 0)
-

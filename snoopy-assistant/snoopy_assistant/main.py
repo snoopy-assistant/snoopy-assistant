@@ -97,7 +97,7 @@ def record_audio(ask=False):
 
 
 def speaky(string):
-    tts = gTTS(text=string, lang='ar', slow=False)
+    tts = gTTS(text=string, lang='en', slow=False)
     r = random.randint(1, 9000)
     audio_file = 'audio-' + str(r) + '.mp3'
     tts.save(audio_file)
@@ -105,6 +105,14 @@ def speaky(string):
     print(string)
     os.remove(audio_file)
 
+def speaky_arabic(string):
+    tts = gTTS(text=string, lang='ar', slow=False)
+    r = random.randint(1, 9000)
+    audio_file = 'audio-' + str(r) + '.mp3'
+    tts.save(audio_file)
+    playsound(audio_file)
+    print(string)
+    os.remove(audio_file)
 
 hour = int(datetime.datetime.now().hour)
 
@@ -254,7 +262,7 @@ def respond(voice_data):
     elif 'open Google' in voice_data:
         webbrowser.get().open("https://www.google.com")
         speaky("Google chrome is open now")
-    elif 'open gmail' in voice_data:
+    elif 'open Gmail' in voice_data:
         webbrowser.get().open("https://mail.google.com/")
         speaky("Google Mail open now")
     elif 'open Facebook' in voice_data:
@@ -279,11 +287,10 @@ def respond(voice_data):
         speaky('your personal assistant snoopy  is shutting down,Good bye sir')
         exit()
     if 'language' in voice_data or 'speak' in voice_data:
-        speaky('سنوبي يتحدث اللغة العربية و ال engilsh also ')
+        speaky_arabic('سنوبي يتحدث اللغة العربية و ال engilsh also ')
 
-    if 'thanks' in voice_data or 'thank you' in voice_data or 'big' in voice_data:
-        speaky(
-            'thank you beautiful crowd big thanks to every one who joined our livestream thank you for your lovely feedback and your orders and special thanks to mister ahmad and the instructional team شكرا لكم جميعا ')
+    if 'thanks' in voice_data or 'big' in voice_data:
+        speaky_arabic('thank you beautiful crowd big thanks to every one who joined our livestream thank you for your lovely feedback and your orders and special thanks to mister ahmad and the instructional team شكرا لكم جميعا ')
 
 
 def stop():
