@@ -180,7 +180,7 @@ def respond(voice_data):
 
     if 'good' in voice_data or 'nice' in voice_data or 'perfect' in voice_data:
         speaky('hopefully forever ')
-    if 'not' in voice_data or 'mad' in voice_data:
+    if 'bad' in voice_data or 'mad' in voice_data:
         speaky(' Do not worry , snoopy will make it right ')
     if 'thank you' in voice_data:
         speaky('any time sir ')
@@ -359,16 +359,21 @@ def open():
     newWindow = tk.Toplevel(root)
     newWindow.iconbitmap('voice.ico')
     newWindow.title("features")
-    newWindow.geometry("300x350")
+    newWindow.geometry("500x550")
     label1 = tk.Listbox(newWindow, height=200, width=500, bg='black', fg="white", activestyle='dotbox',
                         font="Helvetica 16 bold italic")
     label1.insert(1, "Snoopy present to you ")
     label1.insert(2, "                        ")
-    label1.insert(3, "1- tell a joke ")
-    label1.insert(4, "2- send emails ")
-    label1.insert(5, "3- send SMS  ")
-    label1.insert(6, "4- find location ")
-    label1.insert(7, "5- open browser ")
+    label1.insert(3, "1- Today day, Date and Time")
+    label1.insert(4, "2- Search on Google YouTube and Wikipedia")
+    label1.insert(5, "3- find Location")
+    label1.insert(6, "4- Tell a Joke")
+    label1.insert(7, "5- Know the weather for place that user want")
+    label1.insert(8, "6- Tell NEWS")
+    label1.insert(9, "7- Speak Many Languages")
+    label1.insert(10, "8- Play Music")
+    label1.insert(11, "9- Send Email and SMS")
+    label1.insert(12, "10- Add notes and show it")
     label1.pack()
     newWindow.mainloop()
 
