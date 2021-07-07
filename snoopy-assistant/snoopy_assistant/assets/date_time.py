@@ -40,8 +40,26 @@ def weatherTime(voice_data):
             description = data["data"][0]["weather"]["description"]
             temperature = data["data"][0]["high_temp"]
             speaky(f"{description} in {city_name}  and the temperature is {temperature} \n")
+       
+       if  "write a note" in voice_data:
+         
+              speaky("What should I write please ?")
+              my_note =record_audio()
+              file = open('text.txt', 'w')
+              speaky("should I write date and time for you ?")
+              command = record_audio()
+              if 'yes' in command or 'sure' in command:
+                     str_time = str(datetime.datetime.now())
+                     file.write(str_time)
+                     file.write(":")
+                     file.write(my_note)
+                     speaky("done")
+              else:
+                     file.write(my_note)
+                     speaky("done")
+                
+       elif "show me" in voice_data:
+            speaky("done")
+            file = open("text.txt", "r")
+            print(file.read())
 
-
-
-
-    

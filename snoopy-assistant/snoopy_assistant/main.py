@@ -291,6 +291,25 @@ def respond(voice_data):
 
     if 'thanks' in voice_data or 'big' in voice_data:
         speaky_arabic('thank you beautiful crowd big thanks to every one who joined our livestream thank you for your lovely feedback and your orders and special thanks to mister ahmad and the instructional team شكرا لكم جميعا ')
+    if "write a note" in voice_data:
+         speaky("What should I write please ?")
+         my_note =record_audio()
+         file = open('text.txt', 'w')
+         speaky("should I write date and time for you ?")
+         command = record_audio()
+         if 'yes' in command or 'sure' in command:
+                str_time = str(datetime.datetime.now())
+                file.write(str_time)
+                file.write(":")
+                file.write(my_note)
+                speaky("done")
+         else:
+                file.write(my_note)
+                speaky("done")
+    elif "show me" in voice_data:
+            speaky("done")
+            file = open("text.txt", "r")
+            print(file.read())                
 
 
 def stop():
