@@ -1,3 +1,5 @@
+# Requirements
+
 ## User Stories
 
 #### Feature One: [Greeting]
@@ -15,23 +17,32 @@
 
 #### Feature Three: [Searching]
 
-- **as a user, I want to ask Snoopy to Tell a Joke, so he can respond me a funny Joke**
 - **as a user, I want to ask Snoopy to search on google for any topic, so he can respond to me and find what I'm looking for**
-- **as a user, I want to ask Snoopy to sing a song, so he can respond to me and sing for me**
+- **as a user, I want to ask Snoopy to search on Youtube for any topic, so he can respond to me and find what I'm looking for**
 - **as a user, I want to ask Snoopy anything related to search on Wikipedia, so he can respond to me Wikipedia result page**
+- **as a user, I want to ask Snoopy to open Facebook, so he can open it for me**
+- **as a user, I want to ask Snoopy to open Discord, so he can open it for me**
 - **as a user, I want to know the latest news feeds, so he can respond to me with NEWS**
+- **as a user, I want to find the location for any place, and find my exact location**
 
 #### Feature Four : [Sender]
 
 - **as a user, I want to ask Snoopy to send an email, so he can do it**
 - **as a user, I want to ask Snoopy to send an SMS, so he can do it**
 
-#### Feature Five : [Talk in Arabic]
+#### Feature Five : [Translator]
 
+- **as a user, I want to speak English and Snoopy can translate and speak to other languages**
+
+#### Feature Six : [Telling]
+
+- **as a user, I want to ask Snoopy to Tell a Joke, so he can respond me a funny Joke**
 - **as a user, I want to talk with Snoopy in Arabic, so he can understand me**
+- **as a user, I want to ask Snoopy to play a music, so he can play it in background**
+- **as a user, I want to ask Snoopy to write a note and show it, so he can do it**
 
-## Wireframe
+---
 
-![wireframe](wireframe/GUI-window.jpg)
+### Wireframe
 
-**_note: this is primary wireframe_**
+![wireframe](wireframe/GUI-window.png)
