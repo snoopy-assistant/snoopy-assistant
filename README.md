@@ -200,3 +200,5 @@ Using GitHub.
 **4- How will you communicate that it’s time to merge?**
 
 Slack my team.
+
+### [Presintation Slides](https://docs.google.com/presentation/d/16UpmRjdMnu6FBmKRABIPMTwEXtkG5n6LLilfdU7FxIQ/edit#slide=id.ge3ab937f85_0_121)
