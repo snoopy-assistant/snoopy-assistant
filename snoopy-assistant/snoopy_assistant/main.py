@@ -159,7 +159,7 @@ def send_sms():
 
 
 def respond(voice_data):
-    if "what is your name" in voice_data or "what's your name" in voice_data or "tell me your name" in voice_data:
+    if "what is your name" in voice_data or "what's your name" in voice_data or "tell me your name" in voice_data or "your name" in voice_data:
 
         if person_obj.name:
             speaky(f"My name is {asis_obj.name}, {person_obj.name}")

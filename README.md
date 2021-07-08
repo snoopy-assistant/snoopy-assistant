@@ -1,5 +1,43 @@
 # snoopy-assistant
 
+## Steps to Run it:
+
+**1- clone the repo**
+**2- install the Packages :**
+
+```
+- datetime
+- json
+- os
+- random
+- smtplib
+- time
+- tkinter
+- urllib >> request
+- webbrowser
+- requests
+- speech_recognition
+- wikipedia
+- PIL >> Image
+- gtts gTTS
+- playsound
+- pygame >> mixer
+- twilio.rest >> Client
+- ibm_watson >> LanguageTranslatorV3, TextToSpeechV1
+- ibm_cloud_sdk_core.authenticators >> IAMAuthenticator
+- pyttsx3
+```
+
+**3- Run main.py file using PyCharm**
+
+**4- check out the features by clicking on the features button**
+
+**5- start talking with Snoopy by clicking on the Talk button**
+
+**6- use Translator button to translate from language to other**
+
+---
+
 ### User Stories
 
 #### Feature One: [Greeting]
@@ -17,41 +55,53 @@
 
 #### Feature Three: [Searching]
 
-- **as a user, I want to ask Snoopy to Tell a Joke, so he can respond me a funny Joke**
 - **as a user, I want to ask Snoopy to search on google for any topic, so he can respond to me and find what I'm looking for**
-- **as a user, I want to ask Snoopy to sing a song, so he can respond to me and sing for me**
+- **as a user, I want to ask Snoopy to search on Youtube for any topic, so he can respond to me and find what I'm looking for**
 - **as a user, I want to ask Snoopy anything related to search on Wikipedia, so he can respond to me Wikipedia result page**
+- **as a user, I want to ask Snoopy to open Facebook, so he can open it for me**
+- **as a user, I want to ask Snoopy to open Discord, so he can open it for me**
 - **as a user, I want to know the latest news feeds, so he can respond to me with NEWS**
+- **as a user, I want to find the location for any place, and find my exact location**
 
 #### Feature Four : [Sender]
 
 - **as a user, I want to ask Snoopy to send an email, so he can do it**
 - **as a user, I want to ask Snoopy to send an SMS, so he can do it**
 
-#### Feature Five : [Talk in Arabic]
+#### Feature Five : [Translator]
 
+- **as a user, I want to speak English and Snoopy can translate and speak to other languages**
+
+#### Feature Six : [Telling]
+
+- **as a user, I want to ask Snoopy to Tell a Joke, so he can respond me a funny Joke**
 - **as a user, I want to talk with Snoopy in Arabic, so he can understand me**
+- **as a user, I want to ask Snoopy to play a music, so he can play it in background**
+- **as a user, I want to ask Snoopy to write a note and show it, so he can do it**
+
+---
 
 ### Wireframe
 
-![wireframe](wireframe/GUI-window.jpg)
-
-**_note: this is primary wireframe_**
-
+![wireframe](wireframe/GUI-window.png)
 
 ---
+
 ### Team Agreement
 
-#### Students Names 
+#### Students Names
 
----- This is an alphabetical order, contribution is even ----  
-- Ayman Naif 
-- Layan Abu Shaweesh 
+---- This is an alphabetical order, contribution is even ----
+
+- Ayman Naif
+- Layan Abu Shaweesh
 - Obada Alhawjreh
 - Niveen AL Smadi
 
 #### Cooperation Plan
+
 **What are the key strengths of each person on the team?**
+
 - Ayman Naif & Niveen Al Smadi: Machine learning and Ai
 - Obada Alhawjreh & Layan Abu Shaweesh : Data Analasis and Ai
 
@@ -85,6 +135,7 @@ Speak with them in private, understant their behaviour and try to solve any issu
 When one of the team members cross the borders, by cursing or underestimating other members.
 
 #### Communication Plan
+
 **What hours will you be available to communicate?**
 from 9:00 am until 10:00 pm
 
@@ -113,7 +164,7 @@ By sending memes, telling some jokes, offer a funny environment, so everyone fee
 
 **How you will identify tasks, assign tasks, know when they are complete, and manage work in general?**
 
-By creating a wireframe, then start by building a workflow, assign tasks for each member, understand each member strench and weak points. 
+By creating a wireframe, then start by building a workflow, assign tasks for each member, understand each member strench and weak points.
 
 **What project management tool will be used?**
 
